@@ -3,7 +3,7 @@ This is a lightweight pixel art editor that lets users draw, erase, and save the
 Python – core logic and application structure
 Pygame – interactive canvas, rendering, and event handling
 
-Watch me coding it 👉 #incoming link
+[Watch me coding it](https://youtu.be/4ITCb51pf78?si=9QGpvrxN2rpv7Q6t)
 
 Draw with different colors on a pixel grid
 Erase pixels
