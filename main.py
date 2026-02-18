@@ -34,9 +34,11 @@ def draw_grid():
 #Displays the palette on the screen
 def draw_palette():
     for i, color in enumerate(PALETTE_COLORS):
-        rect = pygame.Rect(i * 55 +5, GRID_SIZE * PIXEL_SIZE +10, 45, 40)
+        rect = pygame.Rect(i * 55 + 5, GRID_SIZE * PIXEL_SIZE + 10, 45, 40)
         pygame.draw.rect(screen, color, rect)
-        pygame.draw.rect(screen, (0,0,0), rect, 2)
+        border_color = (255, 255, 255) if color == ACTIVE_COLOR else (0, 0, 0)
+        border_width = 4 if color == ACTIVE_COLOR else 2
+        pygame.draw.rect(screen, border_color, rect, border_width)
 
 #Returns the clear button
 def draw_clear_button():
@@ -78,16 +80,14 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-        # Handle mouse clicks
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            x,y = pygame.mouse.get_pos()
-
-            # Click on the drawing grid
+        mouse_pressed = pygame.mouse.get_pressed()
+        if mouse_pressed[0]: # if left click is pressed
+            x, y = pygame.mouse.get_pos()
             if y < GRID_SIZE * PIXEL_SIZE:
                 col = x // PIXEL_SIZE
                 row = y // PIXEL_SIZE
                 if 0 <= col < GRID_SIZE and 0 <= row < GRID_SIZE:
-                    grid[row][col] = ACTIVE_COLOR #default color --> to DEFINE
+                    grid[row][col] = ACTIVE_COLOR
             
             # Click on the palette or clear button 
             elif y >= GRID_SIZE * PIXEL_SIZE:
